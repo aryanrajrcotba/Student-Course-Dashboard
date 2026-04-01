@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-// Temporary placeholder components
-const Home = () => <div><h2>Available Courses</h2><p>Course list will go here.</p></div>;
-const Login = () => <div><h2>Login</h2><p>Login form will go here.</p></div>;
-const Dashboard = () => <div><h2>My Dashboard</h2><p>User progress will go here.</p></div>;
+
+const Home = () => <div><h2>Available Courses</h2><p>Course list will be uploaded soon</p></div>;
+const Login = () => <div><h2>Login</h2><p>Login form will be done in review 2</p></div>;
+const Dashboard = () => <div><h2>My Dashboard</h2><p>User progress will be added here</p></div>;
 
 function App() {
   return (
