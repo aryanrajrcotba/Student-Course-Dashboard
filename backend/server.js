@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
+const courseRoutes = require('./routes/courseRoutes');
+
 const app = express();
 
 
@@ -13,6 +15,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Backend server is running!');
 });
+
+app.use('/api/courses', courseRoutes);
 
 
 const PORT = process.env.PORT || 5000;
