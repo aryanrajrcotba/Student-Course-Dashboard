@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ user }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        // We use localhost:5001 as specified in backend/.env
         const response = await fetch('http://localhost:5001/api/courses');
         if (!response.ok) {
           throw new Error('Failed to fetch courses');
@@ -25,10 +26,38 @@ const Home = () => {
     fetchCourses();
   }, []);
 
+  const handleEnroll = async (courseId) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/users/${user._id}/enroll`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ courseId })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        alert(data.message || 'Failed to enroll');
+      } else {
+        alert('Successfully enrolled!');
+        // Optionally redirect to dashboard
+        navigate('/dashboard');
+      }
+    } catch (err) {
+      alert('Error enrolling in course');
+    }
+  };
+
   return (
     <div className="page-container">
       <h1 className="page-title">Available Courses</h1>
-      <p className="page-subtitle">Start learning today with our premium courses</p>
+      <p className="page-subtitle">Start learning today with Aryan Vratika & Riya</p>
       
       {loading ? (
         <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading courses...</p>
@@ -44,7 +73,13 @@ const Home = () => {
               </div>
               <h3 style={{ fontSize: '1.25rem', marginTop: '0.5rem' }}>{course.title}</h3>
               <p style={{ color: 'var(--text-muted)', flexGrow: 1 }}>By {course.instructor}</p>
-              <button className="btn btn-secondary" style={{ width: '100%', marginTop: '1rem' }}>View Details</button>
+              <button 
+                className="btn btn-secondary" 
+                style={{ width: '100%', marginTop: '1rem' }}
+                onClick={() => handleEnroll(course._id)}
+              >
+                {user ? 'Enroll' : 'Login to Enroll'}
+              </button>
             </div>
           ))}
         </div>

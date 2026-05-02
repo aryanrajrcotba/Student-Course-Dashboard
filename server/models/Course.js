@@ -17,7 +17,12 @@ const courseSchema = new mongoose.Schema({
   duration: {
     type: String,
     required: true
-  }
+  },
+  modules: [{
+    title: { type: String, required: true },
+    type: { type: String, enum: ['video', 'notes'], required: true },
+    contentUrl: { type: String, required: true }
+  }]
 }, { timestamps: true });
 
 const Course = mongoose.model('Course', courseSchema);
