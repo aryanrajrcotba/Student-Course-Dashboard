@@ -59,3 +59,8 @@ npm start
 
 - The React Frontend will be available at `http://localhost:5173`
 - The Node/Express Server will be available at `http://localhost:5001`
+
+FrontEnd: https://studentcoursedashboard.netlify.app
+
+Backend: https://student-course-dashboard-dep.onrender.com
+

@@ -76,7 +76,7 @@ const Dashboard = ({ user }) => {
               </div>
               <h3 style={{ fontSize: '1.25rem', marginTop: '0.5rem' }}>{course.title}</h3>
               <p style={{ color: 'var(--text-muted)', flexGrow: 1 }}>By {course.instructor}</p>
-              
+
               <div style={{ marginTop: '0.5rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', marginBottom: '0.3rem' }}>
                   <span>Progress</span>

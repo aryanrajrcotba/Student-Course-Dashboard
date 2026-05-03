@@ -13,7 +13,7 @@ const CourseContent = ({ user }) => {
 
     const fetchCourse = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/courses/${id}`);
+        const response = await fetch(`https://student-course-dashboard.onrender.com/api/courses/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch course data');
         }
@@ -54,21 +54,21 @@ const CourseContent = ({ user }) => {
       </div>
 
       <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-        
+
         {/* Content Viewer (Left Side) */}
         <div style={{ flex: '1 1 60%', minWidth: '300px' }}>
           <div className="glass-panel" style={{ padding: '2rem', minHeight: '500px' }}>
             {activeModule ? (
               <>
                 <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{activeModule.title}</h2>
-                
+
                 {activeModule.type === 'video' ? (
                   <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '8px' }}>
-                    <iframe 
-                      src={activeModule.contentUrl} 
+                    <iframe
+                      src={activeModule.contentUrl}
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                      frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       title={activeModule.title}
                     ></iframe>
@@ -89,18 +89,18 @@ const CourseContent = ({ user }) => {
         <div style={{ flex: '1 1 30%', minWidth: '250px' }}>
           <div className="glass-panel" style={{ padding: '1.5rem' }}>
             <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--surface-border)' }}>Course Content</h3>
-            
+
             {course.modules && course.modules.length > 0 ? (
               <ul style={{ listStyle: 'none' }}>
                 {course.modules.map((mod, index) => (
                   <li key={index} style={{ marginBottom: '0.5rem' }}>
-                    <button 
+                    <button
                       onClick={() => setActiveModuleIndex(index)}
-                      style={{ 
-                        width: '100%', 
-                        textAlign: 'left', 
-                        padding: '1rem', 
-                        background: activeModuleIndex === index ? 'var(--primary)' : 'transparent', 
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '1rem',
+                        background: activeModuleIndex === index ? 'var(--primary)' : 'transparent',
                         color: activeModuleIndex === index ? '#fff' : 'var(--text-main)',
                         border: '1px solid var(--surface-border)',
                         borderRadius: '8px',

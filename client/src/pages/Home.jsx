@@ -58,7 +58,7 @@ const Home = ({ user }) => {
     <div className="page-container">
       <h1 className="page-title">Available Courses</h1>
       <p className="page-subtitle">Start learning today with Aryan Vratika & Riya</p>
-      
+
       {loading ? (
         <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading courses...</p>
       ) : error ? (
@@ -73,8 +73,8 @@ const Home = ({ user }) => {
               </div>
               <h3 style={{ fontSize: '1.25rem', marginTop: '0.5rem' }}>{course.title}</h3>
               <p style={{ color: 'var(--text-muted)', flexGrow: 1 }}>By {course.instructor}</p>
-              <button 
-                className="btn btn-secondary" 
+              <button
+                className="btn btn-secondary"
                 style={{ width: '100%', marginTop: '1rem' }}
                 onClick={() => handleEnroll(course._id)}
               >
